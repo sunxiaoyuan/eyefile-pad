@@ -1,8 +1,5 @@
 package com.sgeye.exam.android.server;
 
-import android.util.Log;
-
-import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.simon.margaret.observer.ObserverManager;
 import com.simon.margaret.util.callback.CallbackManager;
@@ -27,6 +24,7 @@ public class ServerSocket extends WebSocketServer {
 
 	public ServerSocket(ServerManager serverManager, int port) throws UnknownHostException {
 		super(new InetSocketAddress((port)));
+
 		_serverManager = serverManager;
 	}
 
