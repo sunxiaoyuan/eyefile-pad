@@ -1,19 +1,14 @@
 package com.sgeye.exam.android.modules.graph;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.blankj.utilcode.util.ScreenUtils;
-import com.blankj.utilcode.util.ToastUtils;
-import com.simon.margaret.app.Margaret;
+import com.sgeye.exam.android.R;
 
 import java.util.List;
 import java.util.Random;
@@ -32,6 +27,10 @@ public class LineControl {
 	private List<CommandType> mDirections;
 	private int mCurIndex = 0;
 	private int mOffset = 0;
+	private int mContainerWidthLarge = 0;
+	private int mContainerHeightLarge = 0;
+	private RelativeLayout mImageContainer;
+
 
 	public LineType getType() {
 		return mType;
@@ -51,17 +50,40 @@ public class LineControl {
 		// 根据布局文件加载Line
 		int resId = LineType.getResIdByIndex(index);
 		mLineRelativeLayout = (RelativeLayout) LayoutInflater.from(context).inflate(resId, null);
+
+		//组件绘制前监听
+		ViewTreeObserver vto = mLineRelativeLayout.getViewTreeObserver();
+		vto.addOnPreDrawListener(() -> {
+			mContainerHeightLarge = mLineRelativeLayout.getMeasuredHeight();
+			mContainerWidthLarge = mLineRelativeLayout.getMeasuredWidth();
+			return true;
+		});
+
 		// 获取方向数组（ = ImageView的个数）
 		mDirections = LineType.getCommandTypesByIndex(index);
 		// 获取图片容器 RelativeLayout
-		RelativeLayout imageContainer = (RelativeLayout) mLineRelativeLayout.getChildAt(2);
-		mOffset = ScreenUtils.getScreenWidth() / mDirections.size();
+		mImageContainer = (RelativeLayout) mLineRelativeLayout.getChildAt(2);
+
+		ViewTreeObserver vtoImageContainer = mImageContainer.getViewTreeObserver();
+		vtoImageContainer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+			@Override
+			public boolean onPreDraw() {
+				int imageContainerWidth = mImageContainer.getMeasuredWidth();
+				mOffset = imageContainerWidth / mDirections.size();
+
+				// 随机移动
+				nextFirst();
+
+				mImageContainer.getViewTreeObserver().removeOnPreDrawListener(this);
+				return false;
+			}
+		});
+
 		// 获取指示器ImageView
-		mIndicator = (ImageView) imageContainer.getChildAt(1);
+		mIndicator = (ImageView) mImageContainer.getChildAt(1);
 		// 自身隐藏
 		mLineRelativeLayout.setAlpha(0);
-		// 初始化指示器位置
-//		next();
+
 	}
 
 	public void addToParent(ViewGroup view) {
@@ -73,6 +95,19 @@ public class LineControl {
 		view.addView(mLineRelativeLayout, params);
 	}
 
+	public void changeViewBigger(boolean isBigger) {
+		ViewGroup imageContainer = (ViewGroup) mImageContainer.getChildAt(0);
+		for (int i = 0; i < imageContainer.getChildCount(); i++) {
+			View imageView = imageContainer.getChildAt(i);
+			ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+			if (isBigger) {
+				layoutParams.height = (int) (layoutParams.height * 1.25);
+			} else {
+				layoutParams.height = (int) (layoutParams.height * 0.8);
+			}
+			imageView.setLayoutParams(layoutParams);
+		}
+	}
 
 	// 检查指令是否正确
 	public boolean check(CommandType type) {
@@ -87,7 +122,7 @@ public class LineControl {
 	// 移动指示器
 	private void next() {
 		int min = 0;
-		int max = mDirections.size() ;
+		int max = mDirections.size();
 		int newPosition = new Random().nextInt(max - min) + min;
 		int offsetX = (newPosition - mCurIndex) * mOffset;
 
@@ -100,11 +135,24 @@ public class LineControl {
 		mCurIndex = newPosition;
 	}
 
-	private int getIndicatorX() {
-		int[] location = new int[2];
-		mIndicator.getLocationOnScreen(location);
-		return location[0];
+	// 移动指示器
+	private void nextFirst() {
+		int min = 0;
+		int max = mDirections.size();
+		int newPosition = new Random().nextInt(max - min) + min;
+		int offsetX = (newPosition - mCurIndex) * mOffset;
+
+		// 移动指示器位置
+		RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mIndicator.getLayoutParams();
+		layoutParams.leftMargin =  offsetX + mOffset/2;
+		layoutParams.topMargin = 20;
+		mIndicator.setLayoutParams(layoutParams);
+		mIndicator.setScaleType(ImageView.ScaleType.MATRIX);
+
+		// 更新位置索引
+		mCurIndex = newPosition;
 	}
+
 
 	private int getNewPosition(int min, int max, int old) {
 		int newPosition = new Random().nextInt(max - min) + min;
@@ -113,7 +161,6 @@ public class LineControl {
 		} else {
 			return newPosition;
 		}
-
 	}
 
 

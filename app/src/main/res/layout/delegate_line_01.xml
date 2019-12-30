@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
+    android:layout_height="match_parent"
     android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
     android:layout_centerVertical="true"
     android:background="@color/white">
 
@@ -13,11 +12,11 @@
         android:id="@+id/tv_01_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:text="0.1"
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp" />
@@ -40,10 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_toEndOf="@+id/tv_01_0"
+        android:layout_toStartOf="@+id/tv_01_1"
         android:layout_toLeftOf="@+id/tv_01_1"
-        android:layout_toRightOf="@+id/tv_01_0"
-        android:layout_toStartOf="@+id/tv_01_1">
+        android:layout_toEndOf="@+id/tv_01_0"
+        android:layout_toRightOf="@+id/tv_01_0">
 
         <LinearLayout
             android:id="@+id/ll_01_eye"
@@ -56,10 +55,10 @@
                 android:id="@+id/iv_01_0"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 app:srcCompat="@mipmap/e_left" />
 
@@ -67,21 +66,22 @@
                 android:id="@+id/iv_01_1"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 app:srcCompat="@mipmap/e_down" />
 
         </LinearLayout>
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:adjustViewBounds="true"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_below="@+id/ll_01_eye"
-            android:layout_marginLeft="140dp"
-            android:layout_marginStart="140dp"
+            android:minWidth="200dp"
+            android:minHeight="200dp"
             app:srcCompat="@mipmap/indicator" />
 
     </RelativeLayout>

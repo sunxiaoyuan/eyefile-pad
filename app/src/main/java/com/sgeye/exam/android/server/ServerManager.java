@@ -48,7 +48,6 @@ public class ServerManager {
 		}
 	}
 
-
 	public void SendMessageToUser(String userName, String message) {
 		Set<WebSocket> ketSet = userMap.keySet();
 		for (WebSocket socket : ketSet) {

@@ -9,11 +9,13 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.githang.statusbar.StatusBarCompat;
 import com.sgeye.exam.android.R;
+import com.sgeye.exam.android.modules.graph.GraphDelegate;
 import com.sgeye.exam.android.modules.launcher.LauncherDelegate;
 import com.simon.margaret.activities.ProxyActivity;
 import com.simon.margaret.app.Margaret;
@@ -28,7 +30,6 @@ public class MainActivity extends ProxyActivity {
 
 	@Override
 	public MargaretDelegate setRootDelegate() {
-
 		return new LauncherDelegate();
 	}
 
@@ -65,8 +66,11 @@ public class MainActivity extends ProxyActivity {
 		// 设置透明状态栏
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			StatusBarCompat.setStatusBarColor(
-					this, Margaret.getApplicationContext().getColor(R.color.mainColor));
+					this, Margaret.getApplicationContext().getColor(R.color.white));
 		}
+
+		getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+
 
 		// 动态申请权限
 //		requestPermissions();

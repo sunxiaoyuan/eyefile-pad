@@ -1,12 +1,12 @@
 package com.sgeye.exam.android.modules.graph;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,7 +14,6 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.sgeye.exam.android.AppConstants;
 import com.sgeye.exam.android.R;
 import com.sgeye.exam.android.R2;
-import com.simon.margaret.app.Margaret;
 import com.simon.margaret.delegates.MargaretDelegate;
 import com.simon.margaret.observer.ObserverListener;
 import com.simon.margaret.observer.ObserverManager;
@@ -30,20 +29,17 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import me.yokeyword.fragmentation.anim.FragmentAnimator;
-
-import static android.widget.RelativeLayout.TRUE;
 
 /**
  * Created by apple on 2019/11/21.
  */
 /*
-* 1.退出策略
-* 	直到最后一行都成功，视力为2.0
-*   在同一行失败两次，视力为上一行数值
-* 2.连续错误两次视为挑战失败，返回上一行测试
-* 3.连续答对两次视为挑战成功，进入下一行测试
-* */
+ * 1.退出策略
+ * 	 直到最后一行都成功，视力为2.0
+ *   在同一行失败两次，视力为上一行数值
+ * 2.连续错误两次视为挑战失败，返回上一行测试
+ * 3.连续答对两次视为挑战成功，进入下一行测试
+ * */
 
 public class GraphDelegate extends MargaretDelegate implements ObserverListener {
 
@@ -56,11 +52,15 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 	private ArrayList<LineControl> mLineArr = new ArrayList<>();
 	private int mCurrentLine = 0;
 
+	@BindView(R2.id.tv_graph_distance)
+	TextView graphDistanceTV;
+
 	@Override
 	public Object setLayout() {
 		return R.layout.delegate_graph;
 	}
 
+	@SuppressLint("InvalidWakeLockTag")
 	@Override
 	public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 		ObserverManager.getInstance().add(this);
@@ -114,7 +114,7 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 	}
 
 	private void sendCheckResultToPhone(String line) {
-		@SuppressWarnings("unchecked")        final IGlobalCallback<String> callback = CallbackManager
+		@SuppressWarnings("unchecked") final IGlobalCallback<String> callback = CallbackManager
 				.getInstance()
 				.getCallback(CallbackType.ON_SEND_BACK_CHECK_RESULT);
 		if (callback != null) {
@@ -124,7 +124,7 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 
 	// 通知手机已经换行
 	private void sendMsgToPhone(boolean ret) {
-		@SuppressWarnings("unchecked")        final IGlobalCallback<Boolean> callback = CallbackManager
+		@SuppressWarnings("unchecked") final IGlobalCallback<Boolean> callback = CallbackManager
 				.getInstance()
 				.getCallback(CallbackType.ON_SEND_BACK_MSG);
 		if (callback != null) {
@@ -152,6 +152,17 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 			LineControl lineControl = new LineControl(_mActivity, i);
 			mLineArr.add(lineControl);
 		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		_mActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
 	}
 
 	@Override
@@ -230,9 +241,22 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 				record.clear();
 			}
 		} else if ("size".equals(split[0])) {
-			//TODO 接收调整E到大小的消息
-
+			boolean isBigger = "true".equals(split[1]);
+			hangleViewSizeChange(isBigger);
 		}
+	}
+
+	// 接受改变距离命令
+	private void hangleViewSizeChange(boolean isBigger) {
+
+		_mActivity.runOnUiThread(() -> {
+			graphDistanceTV.setText(isBigger ? "5m" : "2m");
+			for (LineControl control :
+					mLineArr) {
+				control.changeViewBigger(isBigger);
+			}
+		});
+
 	}
 
 	// 接收换行控制命令

@@ -77,13 +77,19 @@ public class LauncherDelegate extends MargaretDelegate implements ObserverListen
 		String[] split = note.split(":");
 		if (split[0].equals("onOpen")) {
 			if ("true".equals(split[1])) {
-				// 需要判断，如果当前已经有了检查也就不能再创建一个
-
 				GraphDelegate delegate = new GraphDelegate();
 				start(delegate);
 
+				// 打开app屏幕常亮
 
 			}
 		}
 	}
+
+	@OnClick(R2.id.textView)
+	public void jump2Graph(){
+//		GraphDelegate delegate = new GraphDelegate();
+//		start(delegate);
+	}
+
 }

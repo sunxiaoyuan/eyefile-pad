@@ -1,52 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_graph_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rl_graph_container"
     android:background="@color/white">
 
     <!--<include-->
-        <!--layout="@layout/delegate_line_01"/>-->
+    <!--layout="@layout/delegate_line_01"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_012"/>-->
+    <!--layout="@layout/delegate_line_012"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_015"/>-->
+    <!--layout="@layout/delegate_line_015"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_02"/>-->
+    <!--layout="@layout/delegate_line_02"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_025"/>-->
+    <!--layout="@layout/delegate_line_025"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_03"/>-->
+    <!--layout="@layout/delegate_line_03"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_04"/>-->
+    <!--layout="@layout/delegate_line_04"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_05"/>-->
+    <!--layout="@layout/delegate_line_05"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_06"/>-->
+    <!--layout="@layout/delegate_line_06"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_08"/>-->
+    <!--layout="@layout/delegate_line_08"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_10"/>-->
+    <!--layout="@layout/delegate_line_10"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_12"/>-->
+    <!--layout="@layout/delegate_line_12"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_15"/>-->
+    <!--layout="@layout/delegate_line_15"/>-->
     <!--<include-->
-        <!--layout="@layout/delegate_line_20"/>-->
+    <!--layout="@layout/delegate_line_20"/>-->
 
     <Button
         android:id="@+id/btn_graph_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:background="@mipmap/btn_bg"
         android:text="重连"
         android:textColor="@color/mainColor"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_graph_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="5m"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp" />
 
 </RelativeLayout>

@@ -1,19 +1,18 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
-def getVersionCode() { // 获取版本号
-    def versionFile = file('version.properties')// 读取第一步新建的文件
-    if (versionFile.canRead()) {// 判断文件读取异常
+def getVersionCode() {
+    def versionFile = file('version.properties')
+    if (versionFile.canRead()) {
         Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(versionFile))
-        def versionCode = versionProps['VERSION_CODE'].toInteger()// 读取文件里面的版本号
+        def versionCode = versionProps['VERSION_CODE'].toInteger()
         def runTasks = gradle.startParameter.taskNames
-        if (':app:assembleRelease' in runTasks) {//仅在assembleRelease任务是增加版本号,其他渠道包在此分别配置
-            // 版本号自增之后再写入文件（此处是关键，版本号自增+1）
+        if (':app:assembleRelease' in runTasks) {
             versionProps['VERSION_CODE'] = (++versionCode).toString()
             versionProps.store(versionFile.newWriter(), null)
         }
-        return versionCode // 返回自增之后的版本号
+        return versionCode
     } else {
         throw new GradleException("Could not find version.properties!")
     }
@@ -30,6 +29,16 @@ def currentVersionName = getVersionName()
 
 android {
     compileSdkVersion 28
+
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+
     defaultConfig {
         applicationId "com.sgeye.eyefile.pad"
         minSdkVersion 16
@@ -42,6 +51,7 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -53,14 +63,7 @@ android {
     }
     buildToolsVersion '27.0.3'
 
-    signingConfigs {
-        release {
-            storeFile file(MYAPP_RELEASE_STORE_FILE)
-            storePassword MYAPP_RELEASE_STORE_PASSWORD
-            keyAlias MYAPP_RELEASE_KEY_ALIAS
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD
-        }
-    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -71,7 +74,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':margaret-core')
     // ButterKnife
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
     // gif
     api 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
     // 动态权限
@@ -83,5 +86,4 @@ dependencies {
     implementation "org.java-websocket:Java-WebSocket:1.3.6"
 
 
-    implementation 'com.android.support:cardview-v7:27.1.1'
 }
