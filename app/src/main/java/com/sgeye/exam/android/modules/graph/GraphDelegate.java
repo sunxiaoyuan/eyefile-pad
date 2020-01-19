@@ -50,7 +50,7 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 	RelativeLayout graphContainer;
 
 	private ArrayList<LineControl> mLineArr = new ArrayList<>();
-	private int mCurrentLine = 0;
+	private int mCurrentLine = 9;
 
 	@BindView(R2.id.tv_graph_distance)
 	TextView graphDistanceTV;
@@ -84,6 +84,8 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 						// 退出测试，返回结果：上一行的视力数值
 						if (mCurrentLine > 0) {
 							sendCheckResultToPhone(mLineArr.get(mCurrentLine - 1).getType().getLine());
+						} else if (mCurrentLine == 0){
+							sendCheckResultToPhone(mLineArr.get(mCurrentLine).getType().getLine());
 						}
 					} else {
 						// 显示上一行进行测试
@@ -119,6 +121,7 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 				.getCallback(CallbackType.ON_SEND_BACK_CHECK_RESULT);
 		if (callback != null) {
 			callback.executeCallback(line);
+			// 清空挑战结果，回到0.8
 		}
 	}
 
@@ -138,12 +141,11 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 	}
 
 	private void addLineToContainer() {
-
 		for (LineControl lineControl :
 				mLineArr) {
 			lineControl.addToParent(graphContainer);
 		}
-		// 展示第一行
+		// 展示第10行 - 0.8
 		mLineArr.get(mCurrentLine).getLineRelativeLayout().setAlpha(1);
 	}
 
@@ -250,7 +252,7 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 	private void hangleViewSizeChange(boolean isBigger) {
 
 		_mActivity.runOnUiThread(() -> {
-			graphDistanceTV.setText(isBigger ? "5m" : "2m");
+			graphDistanceTV.setText(isBigger ? "5m" : "2.5m");
 			for (LineControl control :
 					mLineArr) {
 				control.changeViewBigger(isBigger);

@@ -70,7 +70,8 @@ public class ChallengeRecord {
 		// 清除本行本次挑战结果序列
 		resetQueue();
 
-		@SuppressWarnings("unchecked")        final IGlobalCallback<Boolean> callback = CallbackManager
+		@SuppressWarnings("unchecked")
+		final IGlobalCallback<Boolean> callback = CallbackManager
 				.getInstance()
 				.getCallback(CallbackType.ON_CHANGE_LINE);
 		if (callback != null) {

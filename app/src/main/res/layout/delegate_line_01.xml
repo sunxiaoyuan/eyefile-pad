@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentStart="true"
     android:layout_alignParentLeft="true"
-    android:layout_centerVertical="true"
-    android:background="@color/white">
+    android:layout_centerVertical="true">
 
     <TextView
         android:id="@+id/tv_01_0"
@@ -35,6 +34,7 @@
         android:textSize="20sp" />
 
     <RelativeLayout
+        android:clipChildren="false"
         android:id="@+id/rl_01_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +46,7 @@
 
         <LinearLayout
             android:id="@+id/ll_01_eye"
+            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -53,8 +54,8 @@
 
             <ImageView
                 android:id="@+id/iv_01_0"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -64,8 +65,8 @@
 
             <ImageView
                 android:id="@+id/iv_01_1"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -76,6 +77,7 @@
         </LinearLayout>
 
         <ImageView
+            android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:layout_width="200dp"
             android:layout_height="200dp"

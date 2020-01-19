@@ -101,9 +101,9 @@ public class LineControl {
 			View imageView = imageContainer.getChildAt(i);
 			ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
 			if (isBigger) {
-				layoutParams.height = (int) (layoutParams.height * 1.25);
+				layoutParams.height = (int) (layoutParams.height * 2);
 			} else {
-				layoutParams.height = (int) (layoutParams.height * 0.8);
+				layoutParams.height = (int) (layoutParams.height * 0.5);
 			}
 			imageView.setLayoutParams(layoutParams);
 		}

@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_alignParentStart="true"
     android:layout_alignParentLeft="true"
-    android:layout_centerVertical="true"
-    android:background="@color/white">
+    android:layout_centerVertical="true">
 
     <TextView
         android:id="@+id/tv_06_0"
@@ -47,6 +46,7 @@
 
         <LinearLayout
             android:id="@+id/ll_06_eye"
+            android:layout_marginTop="212dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -121,6 +121,7 @@
         </LinearLayout>
 
         <ImageView
+            android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:minHeight="200dp"
             android:minWidth="200dp"

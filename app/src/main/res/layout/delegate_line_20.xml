@@ -47,6 +47,7 @@
 
         <LinearLayout
             android:id="@+id/ll_20_eye"
+            android:layout_marginTop="210dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -145,6 +146,7 @@
 
 
         <ImageView
+            android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:minHeight="200dp"
             android:minWidth="200dp"
