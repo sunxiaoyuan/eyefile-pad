@@ -38,8 +38,7 @@
         android:clipChildren="false"
         android:id="@+id/rl_15_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
         android:layout_toEndOf="@+id/tv_15_0"
         android:layout_toLeftOf="@+id/tv_15_1"
         android:layout_toRightOf="@+id/tv_15_0"
@@ -47,10 +46,8 @@
 
         <LinearLayout
             android:id="@+id/ll_15_eye"
-            android:layout_marginTop="210dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <ImageView

@@ -36,8 +36,7 @@
     <RelativeLayout
         android:id="@+id/rl_03_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
         android:layout_toStartOf="@+id/tv_03_1"
         android:layout_toLeftOf="@+id/tv_03_1"
         android:layout_toEndOf="@+id/tv_03_0"
@@ -45,10 +44,8 @@
 
         <LinearLayout
             android:id="@+id/ll_03_eye"
-            android:layout_marginTop="213dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <ImageView
