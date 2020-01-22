@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.simon.margaret.observer.ObserverManager;
 import com.simon.margaret.util.callback.CallbackManager;
 import com.simon.margaret.util.callback.CallbackType;
+import com.simon.margaret.util.callback.IGlobalCallback;
 import com.simon.margaret.util.log.MargaretLogger;
 
 import org.java_websocket.WebSocket;
@@ -32,7 +33,13 @@ public class ServerSocket extends WebSocketServer {
 	@Override
 	public void onOpen(WebSocket conn, ClientHandshake handshake) {
 		MargaretLogger.i("TAG", "Some one Connected...");
-		ToastUtils.showShort("Some one Connected...");
+//		ToastUtils.showShort("Some one Connected...");
+		@SuppressWarnings("unchecked") final IGlobalCallback<String> callback = CallbackManager
+				.getInstance()
+				.getCallback(CallbackType.ON_APP_CONNECTED);
+		if (callback != null) {
+			callback.executeCallback("");
+		}
 //		ObserverManager.getInstance().notifyObserver("onOpen:true");
 	}
 
@@ -41,6 +48,13 @@ public class ServerSocket extends WebSocketServer {
 	public void onClose(WebSocket conn, int code, String reason, boolean remote) {
 		_serverManager.UserLeave(conn);
 		ObserverManager.getInstance().notifyObserver("onOpen:false");
+		@SuppressWarnings("unchecked") final IGlobalCallback<String> callback = CallbackManager
+				.getInstance()
+				.getCallback(CallbackType.ON_APP_DISCONNECTED);
+		if (callback != null) {
+			callback.executeCallback("");
+		}
+
 	}
 
 	@Override

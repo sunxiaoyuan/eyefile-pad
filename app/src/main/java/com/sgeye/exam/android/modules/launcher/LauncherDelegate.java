@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.sgeye.exam.android.AppConstants;
 import com.sgeye.exam.android.R;
@@ -17,6 +18,8 @@ import com.simon.margaret.app.Margaret;
 import com.simon.margaret.delegates.MargaretDelegate;
 import com.simon.margaret.observer.ObserverListener;
 import com.simon.margaret.observer.ObserverManager;
+import com.simon.margaret.util.callback.CallbackManager;
+import com.simon.margaret.util.callback.CallbackType;
 import com.simon.margaret.util.ip.IpUtil;
 import com.simon.margaret.util.storage.MargaretPreference;
 
@@ -33,6 +36,9 @@ public class LauncherDelegate extends MargaretDelegate implements ObserverListen
 	@BindView(R2.id.tv_launcher_ip)
 	TextView ipTV;
 
+	@BindView(R2.id.tv_launcher_tip)
+	TextView tv_launcher_tip;
+
 	@BindView(R2.id.iv_launcher_qrcode)
 	ImageView qrcodeImageView;
 
@@ -44,6 +50,25 @@ public class LauncherDelegate extends MargaretDelegate implements ObserverListen
 	@Override
 	public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 		ObserverManager.getInstance().add(this);
+
+		handleAppHaveConnected();
+		handleAppHaveDisConnected();
+	}
+
+	private void handleAppHaveDisConnected() {
+		CallbackManager.getInstance().addCallback(CallbackType.ON_APP_DISCONNECTED, args -> {
+			_mActivity.runOnUiThread(() -> {
+				tv_launcher_tip.setVisibility(View.INVISIBLE);
+			});
+		});
+	}
+
+	private void handleAppHaveConnected() {
+		CallbackManager.getInstance().addCallback(CallbackType.ON_APP_CONNECTED, args -> {
+			_mActivity.runOnUiThread(() -> {
+				tv_launcher_tip.setVisibility(View.VISIBLE);
+			});
+		});
 	}
 
 	@Override
@@ -68,7 +93,7 @@ public class LauncherDelegate extends MargaretDelegate implements ObserverListen
 		// 生成二维码
 		Bitmap bitmap = ZXingUtils.createQRImage(ipAddress, 400, 400);
 		qrcodeImageView.setImageBitmap(bitmap);
-		ToastUtils.showShort("ip地址已刷新");
+//		ToastUtils.showShort("ip地址已刷新");
 	}
 
 	@Override
@@ -79,15 +104,12 @@ public class LauncherDelegate extends MargaretDelegate implements ObserverListen
 			if ("true".equals(split[1])) {
 				GraphDelegate delegate = new GraphDelegate();
 				start(delegate);
-
-				// 打开app屏幕常亮
-
 			}
 		}
 	}
 
 	@OnClick(R2.id.textView)
-	public void jump2Graph(){
+	public void jump2Graph() {
 //		GraphDelegate delegate = new GraphDelegate();
 //		start(delegate);
 	}

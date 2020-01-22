@@ -250,7 +250,6 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 
 	// 接受改变距离命令
 	private void hangleViewSizeChange(boolean isBigger) {
-
 		_mActivity.runOnUiThread(() -> {
 			graphDistanceTV.setText(isBigger ? "5m" : "2.5m");
 			for (LineControl control :
@@ -258,7 +257,6 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 				control.changeViewBigger(isBigger);
 			}
 		});
-
 	}
 
 	// 接收换行控制命令
@@ -279,7 +277,6 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 
 	// 接收方向控制命令
 	private void handleControlCommand(String command) {
-
 		_mActivity.runOnUiThread(() -> {
 			// 转换成CommandType
 			CommandType commandType = CommandType.getCommandTypeByString(command);
@@ -299,7 +296,6 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 				record.addFailureCount();
 			}
 		});
-
 	}
 
 }
