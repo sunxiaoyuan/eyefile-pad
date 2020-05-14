@@ -50,7 +50,7 @@ public class GraphDelegate extends MargaretDelegate implements ObserverListener 
 	RelativeLayout graphContainer;
 
 	private ArrayList<LineControl> mLineArr = new ArrayList<>();
-	private int mCurrentLine = 9;
+	private int mCurrentLine = 8;
 
 	@BindView(R2.id.tv_graph_distance)
 	TextView graphDistanceTV;

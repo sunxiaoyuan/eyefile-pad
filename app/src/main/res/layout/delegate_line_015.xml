@@ -51,8 +51,8 @@
 
             <ImageView
                 android:id="@+id/iv_015_0"
-                android:layout_width="274dp"
-                android:layout_height="274dp"
+                android:layout_width="282dp"
+                android:layout_height="282dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -62,8 +62,8 @@
 
             <ImageView
                 android:id="@+id/iv_015_1"
-                android:layout_width="274dp"
-                android:layout_height="274dp"
+                android:layout_width="282dp"
+                android:layout_height="282dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"

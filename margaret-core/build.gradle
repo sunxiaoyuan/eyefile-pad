@@ -35,8 +35,8 @@ dependencies {
     api 'me.yokeyword:fragmentation:0.10.1'
     api 'me.yokeyword:fragmentation-swipeback:0.7.9'
     // ButterKnife
-    api 'com.jakewharton:butterknife:9.0.0-SNAPSHOT'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
+    api 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     // 沉浸式状态栏
     compile 'com.githang:status-bar-compat:0.7'
     // Json

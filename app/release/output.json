@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkData":{"type":"MAIN","splits":[],"versionCode":10114,"versionName":"20200119231551","enabled":true,"outputFile":"app-release.apk","fullName":"release","baseName":"release"},"path":"app-release.apk","properties":{}}]
+[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":10119},"path":"app-release.apk","properties":{"packageId":"com.sgeye.eyefile.pad","split":"","minSdkVersion":"16"}}]

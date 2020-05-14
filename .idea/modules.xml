@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eyefile-pad.iml" filepath="$PROJECT_DIR$/eyefile-pad.iml" />
-      <module fileurl="file://$PROJECT_DIR$/margaret-core/margaret-core.iml" filepath="$PROJECT_DIR$/margaret-core/margaret-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="eyefile-pad/app" />
+      <module fileurl="file://$PROJECT_DIR$/eyefile-pad.iml" filepath="$PROJECT_DIR$/eyefile-pad.iml" group="eyefile-pad" />
+      <module fileurl="file://$PROJECT_DIR$/margaret-core/margaret-core.iml" filepath="$PROJECT_DIR$/margaret-core/margaret-core.iml" group="eyefile-pad/margaret-core" />
     </modules>
   </component>
 </project>

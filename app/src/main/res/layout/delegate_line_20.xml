@@ -52,8 +52,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_0"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -63,8 +63,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_1"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -74,8 +74,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_2"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -85,8 +85,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_3"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -96,8 +96,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_4"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -107,8 +107,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_5"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -119,8 +119,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_6"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
@@ -130,8 +130,8 @@
 
             <ImageView
                 android:id="@+id/iv_20_7"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"

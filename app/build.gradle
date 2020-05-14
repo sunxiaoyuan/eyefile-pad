@@ -74,7 +74,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':margaret-core')
     // ButterKnife
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     // gif
     api 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
     // 动态权限
